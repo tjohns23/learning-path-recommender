@@ -52,7 +52,7 @@ def select_item(user: Dict, items: Dict[int, Dict], rng: np.random.Generator) ->
 
     return rng.choice(candidates, p=probs)
 
-def run_simulation(
+def run_simulation_core(
     users: Dict[int, Dict],
     items: Dict[int, Dict],
     max_steps: int = 50,
@@ -91,9 +91,31 @@ def run_simulation(
             )
 
             if rng.random() < dropout_prob:
-                 break
+                break
     
     return pd.DataFrame(logs)
+
+
+from .users import generate_users
+from .items import generate_items
+
+def run_simulation(
+    num_users: int,
+    num_items: int,
+    steps_per_user: int = 50,
+    seed: int = 42
+):
+    users = generate_users(num_users)
+    items = generate_items(num_items)
+
+    logs = run_simulation_core(
+        users=users,
+        items=items,
+        max_steps=steps_per_user,
+        seed=seed
+    )
+
+    return users, items, logs
 
 # --------- Sanity Check ---------- #
 # from items import generate_items

@@ -3,7 +3,7 @@ from typing import Dict
 
 def generate_users(
     num_users: int,
-    num_skills: int,
+    num_skills: int = 8,
     random_seed: int = 42
 ) -> Dict[int, Dict]:
     """

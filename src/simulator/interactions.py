@@ -25,11 +25,13 @@ def simulate_interaction(
     mastery              = user["mastery"]
     learning_rate        = user["learning_rate"]
     difficulty_tolerance = user["difficulty_tolerance"]
+    dropout_sensitivity  = user["dropout_sensitivity"]
 
     # Get item parameters
     item_skills          = item["skills"]
     difficulty           = item["difficulty"]
     estimated_time       = item["estimated_time"]
+    prerequisites        = item["prerequisites"]
 
 
 
@@ -52,7 +54,7 @@ def simulate_interaction(
     # -------------------
     # Success probability
     # ------------------
-    alpha = 3.0 # Weight on mastery
+    alpha = 10.0 # Weight on mastery
     beta = 1.0  # penalty for difficulty
 
     logit = alpha * skill_match - beta * difficulty_gap
@@ -98,7 +100,11 @@ def simulate_interaction(
         "quiz_score": quiz_score,
         "time_spent": time_spent,
         "skill_match": skill_match,
-        "difficulty_gap": difficulty_gap
+        "difficulty_gap": difficulty_gap,
+        "difficulty": difficulty,
+        "dropout_sensitivity": dropout_sensitivity,
+        "num_prerequisites": len(prerequisites),
+        "estimated_time": estimated_time
     }
 
     return interaction

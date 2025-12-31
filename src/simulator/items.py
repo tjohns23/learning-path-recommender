@@ -3,7 +3,7 @@ from typing import Dict, List
 
 def generate_items(
     num_items: int,
-    num_skills: int,
+    num_skills: int = 8,
     random_seed: int = 42
 ) -> Dict[int, Dict]:
     
@@ -35,7 +35,7 @@ def generate_items(
         # -----------------
         
         # Pick random skills
-        num_item_skills = rng.integers(1, min(4, num_skills + 1)) 
+        num_item_skills = rng.integers(1, min(7, num_skills + 1)) 
         skill_indices = rng.choice(num_skills, size=num_item_skills, replace=False)
     
         skill_vector = np.zeros(num_skills, dtype=np.float32)
@@ -72,7 +72,7 @@ def generate_items(
 
     return items
 
-
-items = generate_items(5, 6)
-for item in items.values():
-    print(item)
+# ----------- Sanity Check --------- #
+# items = generate_items(5, 6)
+# for item in items.values():
+#     print(item)

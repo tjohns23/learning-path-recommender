@@ -19,14 +19,14 @@ def extract_interaction_features(
     # Add computed features
     features_list = []
     for idx, row in logs.iterrows():
-        user_id = row["user_id"]
-        item_id = row["item_id"]
+        user_id         = row["user_id"]
+        item_id         = row["item_id"]
         
-        user = users[user_id]
-        item = items[item_id]
+        user            = users[user_id]
+        item            = items[item_id]
         
-        user_mastery = user["mastery"]
-        item_skills = item["skills"]
+        user_mastery    = user["mastery"]
+        item_skills     = item["skills"]
         item_difficulty = item["difficulty"]
 
         # -----------------------------

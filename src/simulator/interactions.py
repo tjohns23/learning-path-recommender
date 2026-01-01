@@ -89,9 +89,23 @@ def simulate_interaction(
     # -------------------
     # Mastery update
     # -------------------
+    mastery_before = user["mastery"].copy()
+    
     if success:
         mastery_update = learning_rate * item_skills * (1.0 - mastery)
         user["mastery"] = np.clip(mastery + mastery_update, 0.0, 1.0)
+    
+    mastery_after = user["mastery"].copy()
+    
+    # Calculate skill gain (average change in mastery for relevant skills)
+    relevant_skills = item_skills.astype(bool)
+    if relevant_skills.any():
+        skill_gain = np.mean(mastery_after[relevant_skills] - mastery_before[relevant_skills])
+    else:
+        skill_gain = 0.0
+    
+    # Normalize skill_gain to [0, 1]
+    skill_gain = float(np.clip(skill_gain, 0.0, 1.0))
 
     interaction = {
         "user_id": user["user_id"],
@@ -104,7 +118,8 @@ def simulate_interaction(
         "difficulty": difficulty,
         "dropout_sensitivity": dropout_sensitivity,
         "num_prerequisites": len(prerequisites),
-        "estimated_time": estimated_time
+        "estimated_time": estimated_time,
+        "skill_gain": skill_gain
     }
 
     return interaction

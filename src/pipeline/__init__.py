@@ -70,7 +70,7 @@ class LearningPathPipeline:
         print("\n[Stage 1] Feature Extraction")
         self.data_pipeline = DataPipeline(users, items)
         self.features = self.data_pipeline.process(self.logs)
-        print(f"  ✓ Extracted features: {self.features.shape[0]} samples × {self.features.shape[1]} columns")
+        print(f"    Extracted features: {self.features.shape[0]} samples × {self.features.shape[1]} columns")
         
         # Stage 2: Ranking Pipeline - Predict relevance scores
         print("\n[Stage 2] Ranking")
@@ -95,7 +95,7 @@ class LearningPathPipeline:
         
         self.ranking_pipeline.train(X, y, feature_columns=feature_cols)
         relevance_pred = self.ranking_pipeline.predict(X)
-        print(f"  ✓ Trained {ranking_model} model")
+        print(f"    Trained {ranking_model} model")
         print(f"    Relevance score range: [{relevance_pred.min():.3f}, {relevance_pred.max():.3f}]")
         
         # Create relevance DataFrame
@@ -113,7 +113,7 @@ class LearningPathPipeline:
         # Note: exclude_seen=False because we want to recommend all high-relevance items,
         # not just those the user hasn't seen
         self.recommendations = self.recommender.recommend_batch(relevance_df, exclude_seen=False)
-        print(f"  ✓ Generated recommendations: {len(self.recommendations)} total")
+        print(f"    Generated recommendations: {len(self.recommendations)} total")
         
         # Compute metadata
         metadata = self._compute_metadata()

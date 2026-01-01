@@ -33,9 +33,9 @@ def main():
         steps_per_user=STEPS_PER_USER,
         seed=RANDOM_SEED
     )
-    print(f"  ✓ Users: {len(users)}")
-    print(f"  ✓ Items: {len(items)}")
-    print(f"  ✓ Interactions: {len(logs)}")
+    print(f"    Users: {len(users)}")
+    print(f"    Items: {len(items)}")
+    print(f"    Interactions: {len(logs)}")
     
     # Step 2: Run the pipeline
     print("\n[Step 2] Running recommendation pipeline...")

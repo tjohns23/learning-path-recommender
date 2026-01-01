@@ -9,11 +9,11 @@ A production-ready, modular end-to-end recommendation system for personalized le
 python example_usage.py
 
 # Output:
-# ✓ Generates 50 users, 30 items, 847 interactions
-# ✓ Extracts 14 features per interaction
-# ✓ Trains Random Forest ranking model
-# ✓ Generates 237 recommendations (avg 4.74 per user)
-# ✓ Reports statistics and feature importances
+#   Generates 50 users, 30 items, 847 interactions
+#   Extracts 14 features per interaction
+#   Trains Random Forest ranking model
+#   Generates 237 recommendations (avg 4.74 per user)
+#   Reports statistics and feature importances
 ```
 
 ## Architecture Overview
@@ -250,8 +250,6 @@ Final Recommendations
 
 ## Documentation
 
-- **PIPELINE_ARCHITECTURE.md**: Detailed architecture, components, data flow
-- **PIPELINE_BUILD_SUMMARY.md**: Build summary, test results
 - **PIPELINE_VISUAL_GUIDE.md**: Visual diagrams, execution timeline
 
 ---

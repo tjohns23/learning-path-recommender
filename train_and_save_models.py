@@ -13,7 +13,7 @@ sys.path.insert(0, SRC_PATH)
 
 from src.simulator.simulate import run_simulation
 from src.pipeline import LearningPathPipeline
-from src.pipeline.persistence import ModelPersistence, save_pipeline_models
+from src.model.persistence import ModelPersistence, save_pipeline_models
 from src.config import (
     NUM_USERS, NUM_ITEMS, STEPS_PER_USER, RANDOM_SEED,
     RANKING_MODEL_TYPE, RANKING_MODEL_PARAMS, TOP_K

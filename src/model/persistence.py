@@ -1,6 +1,4 @@
-"""
-Model persistence utilities using joblib
-"""
+"""Model persistence utilities using joblib."""
 
 import joblib
 import os
@@ -12,8 +10,7 @@ class ModelPersistence:
     """Handle saving and loading models with joblib."""
     
     def __init__(self, model_dir: str = None):
-        """
-        Initialize persistence utility.
+        """Initialize persistence utility.
         
         Args:
             model_dir: Directory to store models (default: PROJECT_ROOT/models)
@@ -26,8 +23,7 @@ class ModelPersistence:
         Path(self.model_dir).mkdir(parents=True, exist_ok=True)
     
     def save_model(self, model: Any, model_name: str) -> str:
-        """
-        Save a model using joblib.
+        """Save a model using joblib.
         
         Args:
             model: Model object to save
@@ -41,8 +37,7 @@ class ModelPersistence:
         return filepath
     
     def load_model(self, model_name: str) -> Any:
-        """
-        Load a model using joblib.
+        """Load a model using joblib.
         
         Args:
             model_name: Name of the model to load
@@ -68,8 +63,7 @@ class ModelPersistence:
 
 
 def save_pipeline_models(pipeline, persistence: ModelPersistence = None):
-    """
-    Save all trained models from a pipeline.
+    """Save all trained models from a pipeline.
     
     Args:
         pipeline: Trained LearningPathPipeline object
@@ -83,7 +77,6 @@ def save_pipeline_models(pipeline, persistence: ModelPersistence = None):
     
     saved = {}
     
-    # Save ranking model
     if pipeline.ranking_pipeline and pipeline.ranking_pipeline.is_trained:
         saved['ranking_model'] = persistence.save_model(
             pipeline.ranking_pipeline.model,
@@ -95,7 +88,6 @@ def save_pipeline_models(pipeline, persistence: ModelPersistence = None):
                 'scaler'
             )
     
-    # Save feature columns
     if pipeline.data_pipeline:
         feature_cols = pipeline.data_pipeline.get_feature_columns()
         saved['feature_columns'] = persistence.save_model(
@@ -107,8 +99,7 @@ def save_pipeline_models(pipeline, persistence: ModelPersistence = None):
 
 
 def load_pipeline_models(persistence: ModelPersistence = None) -> Dict:
-    """
-    Load all trained models.
+    """Load all trained models.
     
     Args:
         persistence: ModelPersistence instance (creates new if None)
